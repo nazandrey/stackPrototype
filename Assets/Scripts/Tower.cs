@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class Tower : MonoBehaviour
+public class Tower : MonoBehaviour, ITower
 {
     public event EventHandler BlockAttached;
     

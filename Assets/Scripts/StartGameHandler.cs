@@ -1,12 +1,16 @@
 ﻿using UnityEngine;
 
-public class StartGameHandler : MonoBehaviour
+public class StartGameHandler : IStartGameHandler
 {
-    [SerializeField] 
-    private BlockSpawner spawner;
+    private IBlockSpawner _spawner;
+
+    public StartGameHandler(IBlockSpawner spawner)
+    {
+        _spawner = spawner;
+    }
     
     public void StartGame()
     {
-        spawner.Spawn();
+        _spawner.Spawn();
     }
 }

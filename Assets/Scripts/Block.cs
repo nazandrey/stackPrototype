@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
+using Zenject;
 
 [RequireComponent(typeof(Rigidbody))]
 public class Block : MonoBehaviour, IPointerClickHandler
@@ -7,25 +8,26 @@ public class Block : MonoBehaviour, IPointerClickHandler
     [SerializeField]
     private float speed;
 
-
     private Vector3 _startPoint;
     private Vector3 _finishPoint;
     private Rigidbody _rigidbody;
-    private GameOverHandler _gameOverHandler;
+    private IGameOverHandler _gameOverHandler;
 
     private bool _isMoving = false;
     private bool _isAttached = false;
 
-    public void Construct(GameOverHandler gameOverHandler, Vector3 startPoint, Vector3 finishPoint)
+    [Inject]
+    public void Construct(Vector3 startPoint, Vector3 finishPoint, IGameOverHandler gameOverHandler)
     {
-        _gameOverHandler = gameOverHandler;
         _startPoint = startPoint;
         _finishPoint = finishPoint;
+        _gameOverHandler = gameOverHandler;
         _isMoving = true;
     }
 
     private void Awake()
     {
+        transform.position = _startPoint;
         _rigidbody = GetComponent<Rigidbody>();
     }
 
@@ -65,5 +67,9 @@ public class Block : MonoBehaviour, IPointerClickHandler
         transform.SetParent(other.transform.parent);
         _isAttached = true;
         _rigidbody.isKinematic = true;
+    }
+    
+    public class Factory : PlaceholderFactory<Vector3, Vector3, Block>
+    {
     }
 }

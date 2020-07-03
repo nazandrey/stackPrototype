@@ -1,7 +1,6 @@
-﻿using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine.SceneManagement;
 
-public class GameOverHandler : MonoBehaviour
+public class GameOverHandler : IGameOverHandler
 {
     public void GameOver()
     {
