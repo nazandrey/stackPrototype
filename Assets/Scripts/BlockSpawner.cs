@@ -20,17 +20,12 @@ public class BlockSpawner : MonoBehaviour
         tower.BlockAttached += OnBlockAttached;
     }
 
-    private void Start()
-    {
-        Spawn();
-    }
-
     private void OnBlockAttached(object sender, EventArgs e)
     {
         Spawn();
     }
 
-    private void Spawn()
+    public void Spawn()
     {
         var block = Instantiate(blockPrefab, transform, false);
         block.Construct(gameOverHandler, transform.position, finishPoint.position);
