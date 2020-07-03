@@ -4,15 +4,15 @@ using Zenject;
 public class MainInstaller : MonoInstaller
 {
     [SerializeField] 
-    private BlockSpawner blockSpawner;
+    private BlockSpawnStarter blockSpawnersStarter;
     
     [SerializeField] 
     private Tower tower;
     
     public override void InstallBindings()
     {
-        Container.Bind<IBlockSpawner>().FromInstance(blockSpawner);
-        Container.Bind<ITower>().FromInstance(tower);
+        Container.Bind<ITower>().FromInstance(tower).AsSingle();
+        Container.Bind<IBlockSpawnStarter>().FromInstance(blockSpawnersStarter).AsSingle();
         Container.BindInterfacesTo<GameOverHandler>().AsSingle();
         Container.BindInterfacesTo<StartGameHandler>().AsSingle();
     }

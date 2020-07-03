@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using Zenject;
 
@@ -27,8 +28,12 @@ public class Block : MonoBehaviour, IPointerClickHandler
 
     private void Awake()
     {
-        transform.position = _startPoint;
         _rigidbody = GetComponent<Rigidbody>();
+    }
+
+    private void Start()
+    {
+        transform.position = _startPoint;
     }
 
     private void FixedUpdate()

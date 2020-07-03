@@ -2,15 +2,15 @@
 
 public class StartGameHandler : IStartGameHandler
 {
-    private IBlockSpawner _spawner;
+    private IBlockSpawnStarter _spawnStarter;
 
-    public StartGameHandler(IBlockSpawner spawner)
+    public StartGameHandler(IBlockSpawnStarter spawnStarter)
     {
-        _spawner = spawner;
+        _spawnStarter = spawnStarter;
     }
     
     public void StartGame()
     {
-        _spawner.Spawn();
+        _spawnStarter.StartSpawn();
     }
 }
