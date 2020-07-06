@@ -15,5 +15,7 @@ public class MainInstaller : MonoInstaller
         Container.Bind<IBlockSpawnStarter>().FromInstance(blockSpawnersStarter).AsSingle();
         Container.BindInterfacesTo<GameOverHandler>().AsSingle();
         Container.BindInterfacesTo<StartGameHandler>().AsSingle();
+        Container.BindInterfacesTo<BlockSlicer>().AsSingle();
+        Container.BindInterfacesTo<BlockSizeSetter>().AsSingle();
     }
 }

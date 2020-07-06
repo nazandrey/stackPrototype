@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Zenject;
@@ -13,16 +14,18 @@ public class Block : MonoBehaviour, IPointerClickHandler
     private Vector3 _finishPoint;
     private Rigidbody _rigidbody;
     private IGameOverHandler _gameOverHandler;
+    private IBlockSlicer _blockSlicer;
 
     private bool _isMoving = false;
     private bool _isAttached = false;
 
     [Inject]
-    public void Construct(Vector3 startPoint, Vector3 finishPoint, IGameOverHandler gameOverHandler)
+    public void Construct(Vector3 startPoint, Vector3 finishPoint, IGameOverHandler gameOverHandler, IBlockSlicer blockSlicer)
     {
         _startPoint = startPoint;
         _finishPoint = finishPoint;
         _gameOverHandler = gameOverHandler;
+        _blockSlicer = blockSlicer;
         _isMoving = true;
     }
 
@@ -68,8 +71,11 @@ public class Block : MonoBehaviour, IPointerClickHandler
             _gameOverHandler.GameOver();
             return;
         }
+
+        _blockSlicer.Slice(transform, other.contacts);
         
-        transform.SetParent(other.transform.parent);
+        transform.SetParent(other.transform.parent, true);
+
         _isAttached = true;
         _rigidbody.isKinematic = true;
     }
