@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public class StartGameHandler : IStartGameHandler
+﻿public class StartGameHandler : IStartGameHandler
 {
     private IBlockSpawnStarter _spawnStarter;
 

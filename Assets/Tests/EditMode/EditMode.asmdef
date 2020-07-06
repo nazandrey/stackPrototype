@@ -1,9 +1,11 @@
 {
-    "name": "Zenject-TestFramework",
+    "name": "Tests.EditMode",
     "references": [
-        "Zenject",
         "UnityEngine.TestRunner",
-        "UnityEditor.TestRunner"
+        "UnityEditor.TestRunner",
+        "Scripts",
+        "Zenject",
+        "Zenject-TestFramework"
     ],
     "includePlatforms": [
         "Editor"
