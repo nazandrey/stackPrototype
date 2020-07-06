@@ -1,12 +1,14 @@
-﻿using UnityEngine;
+﻿using System.Runtime.CompilerServices;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using Zenject;
 
+[assembly: InternalsVisibleTo("Tests.PlayMode")]
 [RequireComponent(typeof(Rigidbody))]
 public class Block : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField]
-    private float speed;
+    internal float speed;
 
     private Vector3 _startPoint;
     private Vector3 _finishPoint;
