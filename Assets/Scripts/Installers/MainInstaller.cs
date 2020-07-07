@@ -11,6 +11,8 @@ public class MainInstaller : MonoInstaller
     
     public override void InstallBindings()
     {
+        Container.Bind<MovingObject>().FromComponentSibling();
+        Container.Bind<Rigidbody>().FromComponentSibling();
         Container.Bind<ITower>().FromInstance(tower).AsSingle();
         Container.Bind<IBlockSpawnStarter>().FromInstance(blockSpawnersStarter).AsSingle();
         Container.BindInterfacesTo<GameOverHandler>().AsSingle();
